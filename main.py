@@ -21,6 +21,8 @@ def reset():
     check.config(text="")
     reps=0
     
+def stop():
+    windows.after_cancel(timer)
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def time_mech():
     global reps
@@ -48,7 +50,7 @@ def c(co):
     
     if co>0:
         global timer
-        timer=windows.after(10,c,co-1)
+        timer=windows.after(1000,c,co-1)
     else:
         time_mech()
         tet=""
@@ -77,5 +79,6 @@ b2.grid(row = 2, column = 2)
 
 check = Label(bg=GREEN, fg=RED, font=(FONT_NAME,50))
 check.grid(row=2, column=1)
-
+b3=Button(text="STOP",bg=PINK,font=(FONT_NAME, 15,"bold"), highlightthickness=0,command=stop )
+b3.grid(row=3,column=1)
 windows.mainloop()
